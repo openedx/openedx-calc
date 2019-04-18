@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="calc",
-    version="0.3",
+    version='0.4',
     packages=["calc"],
     install_requires=[
         "pyparsing==2.2.0",
