@@ -10,4 +10,4 @@ clean:  ## Remove all build artifacts
 	find . -name '*.pyc'
 
 test:  ## Run the library test suite
-	coverage run setup.py test
+	tox
