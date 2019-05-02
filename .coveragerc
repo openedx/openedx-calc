@@ -1,0 +1,14 @@
+[run]
+data_file = reports/.coverage
+source = calc
+branch = true
+
+[report]
+ignore_errors = True
+
+[html]
+title = Calc Python Test Coverage Report
+directory = reports/cover
+
+[xml]
+output = reports/coverage.xml
