@@ -1,33 +1,40 @@
 language: python
+
 sudo: false
+
 cache: pip
+
 matrix:
   include:
-    - python: 3.6
-      env: TOXENV=py3
-    - python: 3.6
-      env: TOXENV=pycodestyle
-    - python: 3.6
-      env: TOXENV=pylint
-    - python: 2.7
-      env: TOXENV=py27
-    - python: 2.7
-      env: TOXENV=pycodestyle
-    - python: 2.7
-      env: TOXENV=pylint
+  - python: 3.5
+    env: TOXENV=py3
+  - python: 3.5
+    env: TOXENV=quality
+
 addons:
-    apt:
-        packages:
-            - libblas-dev
-            - liblapack-dev
-            - gfortran
+  apt:
+    packages:
+    - libblas-dev
+    - liblapack-dev
+    - gfortran
+
 install:
-    - pip install tox
-    - pip install coveralls
+  - pip install tox
+  - pip install coveralls
+
 script:
-    - make test
+  - make test
+
 after_success:
-    - coveralls
-branches:
-    only:
-      - master
+  - coveralls
+
+deploy:
+  provider: pypi
+  user: "__token__"
+  password:
+    secure: G3Z+PwXTi3BwSXSqhGGpxq5UMcKKwdpb37YRfd2ekrLZW+bPhIMpgudBdlWN64XnCFxgE68BSZC3eueIisHe+cx5wUyGifxuJHrDCjkJcOu5fp7er4n1aBs6jSBsv6AzjkWgGBvm7BozgDWzxkx1eKwPQPYX0tTj9LRxXkuYa0tMCd0FSM4awh4ccysHfVqJmnDnNNJbNk+7XuM2R7tWLU08X6IJ9c4lmuf8vrYV4tih6l+pkP1kkdI34zO0JuirhilSRNOk2/LakiCtiFL9k9wLDsDbREOzPyTK3CzN4QeieMdw8HMnx3zvTH6HmrUaZXsg2y6nrIPtJGRriFq8GvPt3qp410SxFKBeaOwjbiGue5BrDWEK962gYkpeXVhPcCsz/RYCG4viuFivwM/qfMX7PKFGZ44W267T2XAiItju4KzFzih2x/T5oTAOO9wFzCCk7DzEPU8qw7OaTKMufTG5M3aHrgztXHTafL1uQv+MoxSYa6becQdIHNRWTeTU1dSPzvLG0Se1wJum9laAXXxt3WJcG35d7WES39Lam+ZlxKOFifqgNCetYwckQF7mp7R6ap+NLcRVDdecghuCxrmR3ykerU8sN+XeFVssUCdgJvSqZFZaDUFv1tTTIvOWBKdlXgxgaPOnNPi1O4UroH/BwFhoKppTbTXJkw3h3Y4=
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
+    python: 3.5
+    condition: "$TOXENV = quality"
