@@ -6,7 +6,7 @@ README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 
 setup(
     name="calc",
-    version='1.0.0',
+    version='1.0.1',
     description='A helper library for mathematical calculations, used by Open edX.',
     long_description=README,
     author='edX',
