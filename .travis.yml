@@ -1,38 +1,30 @@
 language: python
-
 sudo: false
-
 cache: pip
-
 matrix:
   include:
   - python: 3.5
     env: TOXENV=py3
   - python: 3.5
     env: TOXENV=quality
-
 addons:
   apt:
     packages:
     - libblas-dev
     - liblapack-dev
     - gfortran
-
 install:
-  - pip install tox
-  - pip install coveralls
-
+- pip install tox
+- pip install coveralls
 script:
-  - make test
-
+- make test
 after_success:
-  - coveralls
-
+- coveralls
 deploy:
   provider: pypi
   user: edx
   password:
-    secure: bgmgzFrSpvX6HbcNy36qu7M2ahGOeU9W5fDpArtsCYOzk1qNRDpATIwa1GJuTHzyt/D+HWcO3IJaxdqkuTLYJ+I0N3pTBjLJN7cyQ0snq5anSXZqsbIKlZgim5Wf/XCL5D6WcfdO/wkzBQwiuMwQJ3VcPOMKQs31FLYTPDyaEMF59XsayVZwHtX1/AgVD5w5ZF95llNoS7XXnet7J+RNXiq/qEezZ/Fz8yar8GmdB26pLi2h4VaM83eKyJBTb6KZWD6jSn7cS5K0H+P6mxRZmP788IxnLiHmlEDY8nqC3GtnKxdFownVE+bycSVzn6lFD6sg/CrO3or5YISMvJeM07j2cfQ8rDZzGpns+07P5QfHlGnlh5B+aLXIrptntTJmJd66kwcUryo88OmS4ZoHO+9l/iGScVw06A+7MSbmVCC4gFuGaInKIsSq8asIThY24TvGjOIyQgD9h6W5kUjrQ0wvQPHn6Sj9F9aF2HkZyXIR6HVpMl5vcYO5A6qVcsH0kgBZTFSAGqMNZsYrF9hu46e4SwEhb5C1zRsZvxoSLA2raNkAlVP0Exmvvj2H5N1d0pREwvkmWM7CraotoxA4CTV4RHNUAVKsD0Mi2s4i9vlevZ8qIrwmuuJGCPSZfdt6a95cYkbdr7yh5Vq3NyU+fuH48T+KX4pNomzi+6TlxCU=
+    secure: 1aZ6gJZaQstPPLIn++gpqyuAgXtw/LtS5XEzp4oClM0z+++iSwhKkMo2s2cvKoOd9BawHsuAM2Xl4x91bs2Pi9lGlQX8rqPQu14LEupEYU6a5/YJEPF0qmmq5ZlNhsi9NWDrpnHKPCh5D6SeW3PLL/dHY+RXa77gUjBcXn0DCZvP39CLAL2hNLJGDNrCqUNeWb2QkjYjIsvlhTaNk54RMxX9l8id4puOUT3KqBe1vQWGjkj3RgOvTqw5Cn9DUXfvlOmWPobEK1O6q9HGv3ZbGfSUh1udjyv3Cbu+SqJobeY8C3JlYl6g3PtquLVK2x5LCyskf4ZdsaRDUWnvaWXJDY6RGL2fbPC8uOBMrIATWheAnYARcBdeoUIsk5wI8kkZ7bfNLd0YCF42n64C37GgQLSXbc9yFTenaYGwjGaO0zsZ4H7sKqL8UI8Ze7UXppF78RtFKVWGCrC310i0RjoyaJYeo6ektXQUD3datyFkvDP/SrkgHV22uPi0Wvj9hXpDZFc93s7eX25HK6xVE7V4VEnozOM2HC2Tvwt1X/XPq+LGRmd4J0NRYW1MfFZwylW8gh4lgcEu4uayYTpD1K6wd7QjX/8wi2CX8oevqMZKRsdCEyNzI5LAtcMMIwlQDUbduSvHghlXGkIZ1YxJQxPqhXzW69kz7KsCH/xRtcPhQlA=
   distributions: sdist bdist_wheel
   on:
     tags: true
