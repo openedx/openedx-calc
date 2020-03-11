@@ -1,14 +1,16 @@
 import os
 from setuptools import setup
 
+from calc import __version__
 
 README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 
 setup(
-    name="calc",
-    version='1.0.2',
+    name="openedx-calc",
+    version=__version__,
     description='A helper library for mathematical calculations, used by Open edX.',
     long_description=README,
+    long_description_content_type="text/x-rst",
     author='edX',
     author_email='oscm@edx.org',
     url='https://github.com/edx/openedx-calc',
