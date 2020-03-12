@@ -21,12 +21,12 @@ script:
 after_success:
 - coveralls
 deploy:
-  provider: pypi
-  user: edx
-  password:
-    secure: NKeDft4wijd9OxIs9dMtwKEOzE/qqxYkx0vMYj1Qm02qKQy/Kfnvjg1/NnUvFiglh3c4I0HOZQjiGwrbYr7vzT3KTL7/DEqH4pgL4zJCiGw8i+/CH33LMSSNpLLoNsNHjm6Bg4sQxQX76CGjf3EKKNVfnfPplta45olsdvA1TFQepK97YwHShlh743WTFKtQcfQI/XBo2gMEFCRg8ayqeFpaPShqhxYtvJPra/9dns/I2bgUHL2oAtS8vEhdQpXMVuBuPCU4HdKt+K7Gp2sF3KeiOA0JSi0y/huxWUrGp3EGLH1NpMVJt1lx77tzsAnKpaYnd/yPH+4Q4yjk8lz4EOTKW6U1DnuBrED8VyVehBk7w3OL3ldDqa7+PsVKkAYhPBhCE2PGbifuvPExjlTcKphB+ykievh3HmPTBerbtrRC8xJpJQXkOUHbzImvud0ApjOpvKk+CAMOXkx9ZHl+q7y8CPTnAIzRYqF3CYaPOBNlbaIW72wbtFHcQC8+I3WutP5yY+4TkjifU15xIZp16TG3vd9D5AbsEy5FQr40RndTL1w1532gzJPuQeHg7ecMDIumhA7pCVNH2zZgbW7SfZ9hYsph4IyrTk2I3UqC395o+87zd9a3n4DogAlLRwHto18RJNlMiXGNID26RMoRvuJC8BRJI7F8cQEO9RR4TZE=
-  distributions: sdist bdist_wheel
-  on:
-    tags: true
-    python: 3.5
-    condition: "$TOXENV = quality"
+  - provider: pypi
+    user: edx
+    password:
+      secure: NKeDft4wijd9OxIs9dMtwKEOzE/qqxYkx0vMYj1Qm02qKQy/Kfnvjg1/NnUvFiglh3c4I0HOZQjiGwrbYr7vzT3KTL7/DEqH4pgL4zJCiGw8i+/CH33LMSSNpLLoNsNHjm6Bg4sQxQX76CGjf3EKKNVfnfPplta45olsdvA1TFQepK97YwHShlh743WTFKtQcfQI/XBo2gMEFCRg8ayqeFpaPShqhxYtvJPra/9dns/I2bgUHL2oAtS8vEhdQpXMVuBuPCU4HdKt+K7Gp2sF3KeiOA0JSi0y/huxWUrGp3EGLH1NpMVJt1lx77tzsAnKpaYnd/yPH+4Q4yjk8lz4EOTKW6U1DnuBrED8VyVehBk7w3OL3ldDqa7+PsVKkAYhPBhCE2PGbifuvPExjlTcKphB+ykievh3HmPTBerbtrRC8xJpJQXkOUHbzImvud0ApjOpvKk+CAMOXkx9ZHl+q7y8CPTnAIzRYqF3CYaPOBNlbaIW72wbtFHcQC8+I3WutP5yY+4TkjifU15xIZp16TG3vd9D5AbsEy5FQr40RndTL1w1532gzJPuQeHg7ecMDIumhA7pCVNH2zZgbW7SfZ9hYsph4IyrTk2I3UqC395o+87zd9a3n4DogAlLRwHto18RJNlMiXGNID26RMoRvuJC8BRJI7F8cQEO9RR4TZE=
+    distributions: sdist bdist_wheel
+    on:
+      tags: true
+      python: 3.5
+      condition: "$TOXENV = quality"
