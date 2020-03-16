@@ -2,3 +2,8 @@
 .eggs
 reports/
 .tox
+dist
+*.pyc
+build
+.pytest_cache
+.coverage
