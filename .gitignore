@@ -1,5 +1,7 @@
 *.egg-info
 .eggs
+*.eggs/*
+*.egg-info/*
 reports/
 .tox
 dist
