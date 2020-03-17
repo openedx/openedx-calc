@@ -8,7 +8,7 @@ setup(
     name="openedx-calc",
     # Note: cannot easily move version to calc/__init__.py because it imports all
     #   of calc, which causes failure here when requirements have not yet been loaded.
-    version='1.0.6',
+    version='1.0.7',
     description='A helper library for mathematical calculations, used by Open edX.',
     long_description=README,
     long_description_content_type="text/x-rst",
