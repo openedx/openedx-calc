@@ -3,6 +3,27 @@ from setuptools import setup
 
 README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 
+def load_requirements(*requirements_paths):
+    """
+    Load all requirements from the specified requirements files.
+    Returns a list of requirement strings.
+    """
+    requirements = set()
+    for path in requirements_paths:
+        with open(path) as reqs:
+            requirements.update(
+                line.split('#')[0].strip() for line in reqs
+                if is_requirement(line.strip())
+            )
+    return list(requirements)
+
+
+def is_requirement(line):
+    """
+    Return True if the requirement line is a package requirement;
+    that is, it is not blank, a comment, a URL, or an included file.
+    """
+    return line and not line.startswith(('-r', '#', '-e', 'git+', '-c'))
 
 setup(
     name="openedx-calc",
@@ -19,12 +40,7 @@ setup(
         'calc'
     ],
     include_package_data=True,
-    install_requires=[
-        "pyparsing==2.2.0",
-        "numpy",
-        "scipy",
-        'six',
-    ],
+    install_requires=load_requirements('requirements/base.in'),
     python_requires=">=3.5",
     license="AGPL 3.0",
     test_suite='calc.tests',
@@ -40,8 +56,6 @@ setup(
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
 )
