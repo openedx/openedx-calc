@@ -1,12 +1,12 @@
 language: python
 sudo: false
 cache: pip
-matrix:
-  include:
-  - python: 3.5
-    env: TOXENV=py3
-  - python: 3.5
-    env: TOXENV=quality
+python:
+  - 3.5
+  - 3.8
+env:
+  - TOXENV=py3
+  - TOXENV=quality
 addons:
   apt:
     packages:
@@ -14,8 +14,7 @@ addons:
     - liblapack-dev
     - gfortran
 install:
-- pip install tox
-- pip install coveralls
+- pip install -r requirements/travis.txt
 script:
 - make test
 after_success:
