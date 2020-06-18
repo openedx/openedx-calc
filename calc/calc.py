@@ -4,7 +4,6 @@ Parser and evaluator for FormulaResponse and NumericalResponse
 Uses pyparsing to parse. Main function as of now is evaluator().
 """
 
-from __future__ import absolute_import
 import math
 import numbers
 import operator
