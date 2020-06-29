@@ -4,17 +4,17 @@
 #
 #    make upgrade
 #
-astroid==2.4.0            # via pylint
+astroid==2.4.2            # via pylint
 coverage==5.1             # via -r requirements/test.in
 isort==4.3.21             # via pylint
 lazy-object-proxy==1.4.3  # via astroid
 mccabe==0.6.1             # via pylint
-numpy==1.18.3             # via -r requirements/base.txt, scipy
-pycodestyle==2.5.0        # via -r requirements/test.in
-pylint==2.5.0             # via -r requirements/test.in
+numpy==1.18.5             # via -r requirements/base.txt, scipy
+pycodestyle==2.6.0        # via -r requirements/test.in
+pylint==2.5.3             # via -r requirements/test.in
 pyparsing==2.4.7          # via -r requirements/base.txt
 scipy==1.4.1              # via -r requirements/base.txt
-six==1.14.0               # via -r requirements/base.txt, astroid
-toml==0.10.0              # via pylint
+six==1.15.0               # via astroid
+toml==0.10.1              # via pylint
 typed-ast==1.4.1          # via astroid
 wrapt==1.12.1             # via astroid

@@ -4,7 +4,6 @@
 #
 #    make upgrade
 #
-numpy==1.18.3             # via -r requirements/base.in, scipy
+numpy==1.18.5             # via -r requirements/base.in, scipy
 pyparsing==2.4.7          # via -r requirements/base.in
 scipy==1.4.1              # via -r requirements/base.in
-six==1.14.0               # via -r requirements/base.in

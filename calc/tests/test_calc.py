@@ -7,7 +7,6 @@ import unittest
 import numpy
 import calc
 from pyparsing import ParseException
-from six.moves import zip
 
 # numpy's default behavior when it evaluates a function outside its domain
 # is to raise a warning (not an exception) which is then printed to STDOUT.
