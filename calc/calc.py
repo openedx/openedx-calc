@@ -299,7 +299,7 @@ def check_parens(formula):
         raise UnmatchedParenthesis(msg.format(count))
 
 
-class ParseAugmenter(object):
+class ParseAugmenter:
     """
     Holds the data for a particular parse.
 
@@ -438,7 +438,7 @@ class ParseAugmenter(object):
 
             node_name = node.getName()
             if node_name not in handle_actions:  # pragma: no cover
-                raise Exception(u"Unknown branch name '{}'".format(node_name))
+                raise Exception(f"Unknown branch name '{node_name}'")
 
             action = handle_actions[node_name]
             handled_kids = [handle_node(k) for k in node]
@@ -458,12 +458,12 @@ class ParseAugmenter(object):
         else:
             casify = lambda x: x.lower()  # Lowercase for case insens.
 
-        bad_vars = set(var for var in self.variables_used
-                       if casify(var) not in valid_variables)
+        bad_vars = {var for var in self.variables_used
+                       if casify(var) not in valid_variables}
 
         if bad_vars:
             varnames = ", ".join(sorted(bad_vars))
-            message = "Invalid Input: {} not permitted in answer as a variable".format(varnames)
+            message = f"Invalid Input: {varnames} not permitted in answer as a variable"
 
             # Check to see if there is a different case version of the variables
             caselist = set()
@@ -478,11 +478,11 @@ class ParseAugmenter(object):
 
             raise UndefinedVariable(message)
 
-        bad_funcs = set(func for func in self.functions_used
-                        if casify(func) not in valid_functions)
+        bad_funcs = {func for func in self.functions_used
+                        if casify(func) not in valid_functions}
         if bad_funcs:
             funcnames = ', '.join(sorted(bad_funcs))
-            message = "Invalid Input: {} not permitted in answer as a function".format(funcnames)
+            message = f"Invalid Input: {funcnames} not permitted in answer as a function"
 
             # Check to see if there is a corresponding variable name
             if any(casify(func) in valid_variables for func in bad_funcs):
