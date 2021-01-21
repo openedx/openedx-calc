@@ -73,14 +73,14 @@ class EvaluatorTest(unittest.TestCase):
 
         for input_str in correct_responses:
             result = calc.evaluator({}, {}, input_str)
-            fail_msg = "Expected '{0}' to equal {1}".format(
+            fail_msg = "Expected '{}' to equal {}".format(
                 input_str, answer
             )
             self.assertEqual(answer, result, msg=fail_msg)
 
         for input_str in incorrect_responses:
             result = calc.evaluator({}, {}, input_str)
-            fail_msg = "Expected '{0}' to not equal {1}".format(
+            fail_msg = "Expected '{}' to not equal {}".format(
                 input_str, answer
             )
             self.assertNotEqual(answer, result, msg=fail_msg)
@@ -113,9 +113,9 @@ class EvaluatorTest(unittest.TestCase):
         operators = [('+', 7), ('-', 3), ('*', 10), ('/', 2.5), ('^', 25)]
 
         for (operator, answer) in operators:
-            input_str = "{0} {1} {2}".format(var1, operator, var2)
+            input_str = f"{var1} {operator} {var2}"
             result = calc.evaluator({}, {}, input_str)
-            fail_msg = "Failed on operator '{0}': '{1}' was not {2}".format(
+            fail_msg = "Failed on operator '{}': '{}' was not {}".format(
                 operator, input_str, answer
             )
             self.assertEqual(answer, result, msg=fail_msg)
@@ -163,9 +163,9 @@ class EvaluatorTest(unittest.TestCase):
         """
 
         for (arg, val) in zip(ins, outs):
-            input_str = "{0}({1})".format(fname, arg)
+            input_str = f"{fname}({arg})"
             result = calc.evaluator({}, {}, input_str)
-            fail_msg = "Failed on function {0}: '{1}' was not {2}".format(
+            fail_msg = "Failed on function {}: '{}' was not {}".format(
                 fname, input_str, val
             )
             self.assertAlmostEqual(val, result, delta=tolerance, msg=fail_msg)
@@ -364,7 +364,7 @@ class EvaluatorTest(unittest.TestCase):
             ('pi', 3.1416, 1e-4),
         ]
         for (variable, value, tolerance) in default_variables:
-            fail_msg = "Failed on constant '{0}', not within bounds".format(
+            fail_msg = "Failed on constant '{}', not within bounds".format(
                 variable
             )
             result = calc.evaluator({}, {}, variable)
