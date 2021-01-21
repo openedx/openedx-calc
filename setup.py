@@ -29,7 +29,7 @@ setup(
     name="openedx-calc",
     # Note: cannot easily move version to calc/__init__.py because it imports all
     #   of calc, which causes failure here when requirements have not yet been loaded.
-    version='1.0.9',
+    version='2.0.0',
     description='A helper library for mathematical calculations, used by Open edX.',
     long_description=README,
     long_description_content_type="text/x-rst",
@@ -41,7 +41,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=load_requirements('requirements/base.in'),
-    python_requires=">=3.5",
+    python_requires=">=3.8",
     license="AGPL 3.0",
     test_suite='calc.tests',
     tests_require=[
@@ -55,7 +55,6 @@ setup(
         'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.8',
     ],
 )
