@@ -71,8 +71,8 @@ DEFAULT_FUNCTIONS = {
 }
 
 DEFAULT_VARIABLES = {
-    'i': numpy.complex(0, 1),
-    'j': numpy.complex(0, 1),
+    'i': complex(0, 1),
+    'j': complex(0, 1),
     'e': numpy.e,
     'pi': numpy.pi,
 }
