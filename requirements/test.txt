@@ -4,31 +4,32 @@
 #
 #    make upgrade
 #
-astroid==2.4.2
+astroid==2.6.6
     # via pylint
-coverage==5.4
+coverage==5.5
     # via -r requirements/test.in
-isort==5.7.0
+isort==5.9.3
     # via pylint
-lazy-object-proxy==1.4.3
+lazy-object-proxy==1.6.0
     # via astroid
 mccabe==0.6.1
     # via pylint
-numpy==1.19.5
+numpy==1.21.1
     # via
     #   -r requirements/base.txt
     #   scipy
-pycodestyle==2.6.0
+pycodestyle==2.7.0
     # via -r requirements/test.in
-pylint==2.6.0
+pylint==2.9.6
     # via -r requirements/test.in
 pyparsing==2.4.7
     # via -r requirements/base.txt
-scipy==1.6.0
+scipy==1.7.1
     # via -r requirements/base.txt
-six==1.15.0
-    # via astroid
 toml==0.10.2
     # via pylint
 wrapt==1.12.1
     # via astroid
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
