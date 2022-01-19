@@ -36,3 +36,5 @@ jobs:
 
     - name: Run Tests
       run: make test
+      env:
+        TOXENV: ${{ matrix.toxenv }}
