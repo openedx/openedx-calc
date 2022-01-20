@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-.PHONY: help
+.PHONY: help requirements
 help:  ## This.
 	@perl -ne 'print if /^[a-zA-Z_-]+:.*## .*$$/' $(MAKEFILE_LIST) \
 	| sort \
@@ -11,6 +11,11 @@ clean:  ## Remove all build artifacts
 
 test:  ## Run the library test suite
 	tox
+
+requirements: ## install development environment requirements
+	pip install -r requirements/pip.txt
+	pip install -r requirements/pip_tools.txt
+	pip install -r requirements/test.txt
 
 upgrade: export CUSTOM_COMPILE_COMMAND=make upgrade
 upgrade: ## update the requirements/*.txt files with the latest packages satisfying requirements/*.in

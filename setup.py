@@ -50,20 +50,22 @@ setup(
     # Note: cannot easily move version to calc/__init__.py because it imports all
     #   of calc, which causes failure here when requirements have not yet been loaded.
     version=VERSION,
-    description='A helper library for mathematical calculations, used by Open edX.',
+    description=('A helper library for mathematical calculations and symbolic '
+                 'mathematics, used by Open edX.'),
     long_description=README,
     long_description_content_type="text/x-rst",
     author='edX',
     author_email='oscm@edx.org',
     url='https://github.com/edx/openedx-calc',
     packages=[
-        'calc'
+        'calc',
+        "symmath"
     ],
     include_package_data=True,
     install_requires=load_requirements('requirements/base.in'),
     python_requires=">=3.8",
     license="AGPL 3.0",
-    test_suite='calc.tests',
+    test_suite='tests',
     tests_require=[
         'coverage',
     ],

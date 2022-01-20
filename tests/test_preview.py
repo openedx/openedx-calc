@@ -4,8 +4,8 @@ Unit tests for preview.py
 
 
 import unittest
-from calc import preview
 import pyparsing
+from calc import preview
 
 
 class LatexRenderedTest(unittest.TestCase):
@@ -231,7 +231,7 @@ class LatexPreviewTest(unittest.TestCase):
                 preview.latex_preview(math)
             except pyparsing.ParseException:
                 pass  # This is what we were expecting. (not excepting :P)
-            except Exception as error:  # pragma: no cover
+            except Exception as error:  # pylint: disable=broad-except
                 bad_exceptions[math] = error
             else:  # pragma: no cover
                 # If there is no exception thrown, this is a problem
