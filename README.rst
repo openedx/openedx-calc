@@ -1,7 +1,7 @@
 openedx-calc
 ============
 
-A helper library for mathematical calculations, used by the `edx-platform`_.
+A helper library for mathematical calculations and symbolic mathematics, used by the `edx-platform`_.
 
 This code originally lived in the `edx-platform`_ repo, but now exists here independently.
 

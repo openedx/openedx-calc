@@ -8,6 +8,7 @@ import math
 import numbers
 import operator
 
+from functools import reduce
 import numpy
 from pyparsing import (
     CaselessLiteral,
@@ -28,7 +29,7 @@ from pyparsing import (
 )
 
 from . import functions
-from functools import reduce
+
 
 # Functions available by default
 # We use scimath variants which give complex results when needed. For example:
@@ -86,14 +87,12 @@ class UndefinedVariable(Exception):
     """
     Indicate when a student inputs a variable which was not expected.
     """
-    pass
 
 
 class UnmatchedParenthesis(Exception):
     """
     Indicate when a student inputs a formula with mismatched parentheses.
     """
-    pass
 
 
 def lower_dict(input_dict):
@@ -216,14 +215,14 @@ def eval_product(parse_result):
     return prod
 
 
-def add_defaults(variables, functions, case_sensitive):
+def add_defaults(additional_variables, additional_functions, case_sensitive):
     """
     Create dictionaries with both the default and user-defined variables.
     """
     all_variables = dict(DEFAULT_VARIABLES)
     all_functions = dict(DEFAULT_FUNCTIONS)
-    all_variables.update(variables)
-    all_functions.update(functions)
+    all_variables.update(additional_variables)
+    all_functions.update(additional_functions)
 
     if not case_sensitive:
         all_variables = lower_dict(all_variables)
@@ -232,7 +231,7 @@ def add_defaults(variables, functions, case_sensitive):
     return (all_variables, all_functions)
 
 
-def evaluator(variables, functions, math_expr, case_sensitive=False):
+def evaluator(variables, unary_functions, math_expr, case_sensitive=False):
     """
     Evaluate an expression; that is, take a string of math and return a float.
 
@@ -250,7 +249,7 @@ def evaluator(variables, functions, math_expr, case_sensitive=False):
     math_interpreter.parse_algebra()
 
     # Get our variables together.
-    all_variables, all_functions = add_defaults(variables, functions, case_sensitive)
+    all_variables, all_functions = add_defaults(variables, unary_functions, case_sensitive)
 
     # ...and check them
     math_interpreter.check_variables(all_variables, all_functions)
@@ -355,7 +354,7 @@ class ParseAugmenter:
         inner_number = Combine(inner_number)
 
         # SI suffixes and percent.
-        number_suffix = MatchFirst(Literal(k) for k in SUFFIXES.keys())
+        number_suffix = MatchFirst(Literal(k) for k in SUFFIXES)
 
         # 0.33k or 17
         plus_minus = Literal('+') | Literal('-')
@@ -459,7 +458,7 @@ class ParseAugmenter:
             casify = lambda x: x.lower()  # Lowercase for case insens.
 
         bad_vars = {var for var in self.variables_used
-                       if casify(var) not in valid_variables}
+                    if casify(var) not in valid_variables}
 
         if bad_vars:
             varnames = ", ".join(sorted(bad_vars))
@@ -479,7 +478,7 @@ class ParseAugmenter:
             raise UndefinedVariable(message)
 
         bad_funcs = {func for func in self.functions_used
-                        if casify(func) not in valid_functions}
+                     if casify(func) not in valid_functions}
         if bad_funcs:
             funcnames = ', '.join(sorted(bad_funcs))
             message = f"Invalid Input: {funcnames} not permitted in answer as a function"
