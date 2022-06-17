@@ -35,7 +35,8 @@ class EvaluatorTest(unittest.TestCase):
           test_exponential_answer
           test_si_suffix
         """
-        easy_eval = lambda x: calc.evaluator({}, {}, x)
+        def easy_eval(x):
+            return calc.evaluator({}, {}, x)
 
         self.assertEqual(easy_eval("13"), 13)
         self.assertEqual(easy_eval("3.14"), 3.14)
@@ -238,7 +239,9 @@ class EvaluatorTest(unittest.TestCase):
         """
         inputs = ['0', '0.5', '1', '2', '1+j']
         neg_inputs = ['0', '-0.5', '-1', '-2', '-1-j']
-        negate = lambda x: [-k for k in x]
+
+        def negate(x):
+            return [-k for k in x]
 
         # sinh is odd
         sinh_vals = [0, 0.521, 1.175, 3.627, 0.635 + 1.298j]

@@ -210,7 +210,9 @@ def render_power(children):
     children_latex = [k.latex for k in children if k.latex != "^"]
     children_latex[-1] = children[-1].sans_parens
 
-    raise_power = lambda x, y: f"{y}^{{{x}}}"
+    def raise_power(x, y):
+        return f"{y}^{{{x}}}"
+
     latex = reduce(raise_power, reversed(children_latex))
     return LatexRendered(latex, tall=True)
 
@@ -372,10 +374,11 @@ def latex_preview(math_expr, variables=(), functions=(), case_sensitive=False):
     variables, functions = add_defaults(variables, functions, case_sensitive)
 
     # Create a recursion to evaluate the tree.
-    if case_sensitive:
-        casify = lambda x: x
-    else:
-        casify = lambda x: x.lower()  # Lowercase for case insens.
+    def casify(x):
+        if case_sensitive:
+            return x
+        else:
+            return x.lower()  # Lowercase for case insens.
 
     render_actions = {
         'number': render_number,
@@ -389,9 +392,11 @@ def latex_preview(math_expr, variables=(), functions=(), case_sensitive=False):
     }
 
     backslash = "\\"
-    wrap_escaped_strings = lambda s: LatexRendered(
-        s.replace(backslash, backslash * 2)
-    )
+
+    def wrap_escaped_strings(s):
+        return LatexRendered(
+            s.replace(backslash, backslash * 2)
+        )
 
     output = latex_interpreter.reduce_tree(
         render_actions,
