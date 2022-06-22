@@ -32,9 +32,10 @@ def symmath_check_simple(expect, ans, adict={}, symtab=None, extra_options=None)
     """
 
     options = {'__MATRIX__': False, '__ABC__': False, '__LOWER__': False}
+    options_copy = options
     if extra_options:
         options.update(extra_options)
-    for op in options:				# find options in expect string
+    for op in options_copy:				# find options in expect string
         if op in expect:
             expect = expect.replace(op, '')
             options[op] = True

@@ -255,15 +255,22 @@ def evaluator(variables, unary_functions, math_expr, case_sensitive=False):
     math_interpreter.check_variables(all_variables, all_functions)
 
     # Create a recursion to evaluate the tree.
-    if case_sensitive:
-        casify = lambda x: x
-    else:
-        casify = lambda x: x.lower()  # Lowercase for case insens.
+    def casify(x):
+        if case_sensitive:
+            return x
+        else:
+            return x.lower()  # Lowercase for case insens.
+
+    def eval_variable(x):
+        return all_variables[casify(x[0])]
+
+    def eval_function(x):
+        return all_functions[casify(x[0])](x[1])
 
     evaluate_actions = {
         'number': eval_number,
-        'variable': lambda x: all_variables[casify(x[0])],
-        'function': lambda x: all_functions[casify(x[0])](x[1]),
+        'variable': eval_variable,
+        'function': eval_function,
         'atom': eval_atom,
         'power': eval_power,
         'parallel': eval_parallel,
@@ -452,10 +459,11 @@ class ParseAugmenter:
 
         Otherwise, raise an UndefinedVariable containing all bad variables.
         """
-        if self.case_sensitive:
-            casify = lambda x: x
-        else:
-            casify = lambda x: x.lower()  # Lowercase for case insens.
+        def casify(x):
+            if self.case_sensitive:
+                return x
+            else:
+                return x.lower()  # Lowercase for case insens.
 
         bad_vars = {var for var in self.variables_used
                     if casify(var) not in valid_variables}
