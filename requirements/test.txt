@@ -65,7 +65,7 @@ py==1.11.0
     # via tox
 pycodestyle==2.8.0
     # via -r requirements/test.in
-pylint==2.14.2
+pylint==2.14.3
     # via
     #   -r requirements/test.in
     #   edx-lint
