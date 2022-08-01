@@ -63,7 +63,7 @@ pluggy==1.0.0
     # via tox
 py==1.11.0
     # via tox
-pycodestyle==2.8.0
+pycodestyle==2.9.0
     # via -r requirements/test.in
 pylint==2.14.5
     # via
@@ -88,13 +88,12 @@ python-slugify==6.1.2
     # via code-annotations
 pyyaml==6.0
     # via code-annotations
-scipy==1.8.1
+scipy==1.9.0
     # via -r requirements/base.txt
 six==1.16.0
     # via
     #   edx-lint
     #   tox
-    #   virtualenv
 stevedore==4.0.0
     # via code-annotations
 sympy==1.10.1
@@ -113,7 +112,7 @@ typing-extensions==4.3.0
     # via
     #   astroid
     #   pylint
-virtualenv==20.15.1
+virtualenv==20.16.2
     # via tox
 wrapt==1.14.1
     # via astroid
