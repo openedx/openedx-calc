@@ -10,13 +10,13 @@ markupsafe==2.1.1
     # via -r requirements/base.in
 mpmath==1.2.1
     # via sympy
-numpy==1.23.1
+numpy==1.23.4
     # via
     #   -r requirements/base.in
     #   scipy
 pyparsing==3.0.9
     # via -r requirements/base.in
-scipy==1.8.1
+scipy==1.9.3
     # via -r requirements/base.in
-sympy==1.10.1
+sympy==1.11.1
     # via -r requirements/base.in
