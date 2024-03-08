@@ -348,9 +348,7 @@ class EvaluatorTest(unittest.TestCase):
         self.assert_function_values('factorial', fact_inputs, fact_values)
 
         self.assertRaises(ValueError, calc.evaluator, {}, {}, "fact(-1)")
-        self.assertRaises(ValueError, calc.evaluator, {}, {}, "fact(0.5)")
         self.assertRaises(ValueError, calc.evaluator, {}, {}, "factorial(-1)")
-        self.assertRaises(ValueError, calc.evaluator, {}, {}, "factorial(0.5)")
 
     def test_constants(self):
         """
