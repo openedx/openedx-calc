@@ -5,5 +5,4 @@ load-plugins = edx_lint.pylint,pylint_django,pylint_celery
 
 [MESSAGES CONTROL]
 disable+ =
-    no-self-use,
     django-not-available,
