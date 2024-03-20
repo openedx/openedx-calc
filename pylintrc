@@ -287,7 +287,6 @@ disable =
 	illegal-waffle-usage,
 	
 	logging-fstring-interpolation,
-	no-self-use,
 	django-not-available,
 
 [REPORTS]
@@ -385,4 +384,4 @@ int-import-graph =
 [EXCEPTIONS]
 overgeneral-exceptions = builtins.Exception
 
-# 37fb074922e492cc9d7946220ba214f767ee70f1
+# f90fb567b1f44429c280e9de9c5d874fb1d81d25

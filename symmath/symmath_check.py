@@ -324,7 +324,7 @@ def symmath_check(expect, ans, dynamath=None, options=None, debug=None, xml=None
     #fsym = fsym.simplify()
     #fexpect = fexpect.simplify()
     try:
-        diff = (fexpect - fsym)
+        diff = fexpect - fsym
     except Exception as err:  # lint-amnesty, pylint: disable=broad-except
         diff = None
 
