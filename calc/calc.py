@@ -265,6 +265,11 @@ def evaluator(variables, unary_functions, math_expr, case_sensitive=False):
         return all_variables[casify(x[0])]
 
     def eval_function(x):
+        # This condition here is only for factorial function
+        if isinstance(x[1], numbers.Real):
+            if math.ceil(x[1]) == x[1]:
+                return all_functions[casify(x[0])](int(x[1]))
+
         return all_functions[casify(x[0])](x[1])
 
     evaluate_actions = {
