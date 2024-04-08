@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-lxml==5.1.0
+lxml==5.2.1
     # via -r requirements/base.in
 markupsafe==2.1.5
     # via -r requirements/base.in

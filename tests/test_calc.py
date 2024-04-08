@@ -348,9 +348,13 @@ class EvaluatorTest(unittest.TestCase):
         self.assert_function_values('factorial', fact_inputs, fact_values)
 
         self.assertRaises(ValueError, calc.evaluator, {}, {}, "fact(-1)")
-        self.assertRaises(ValueError, calc.evaluator, {}, {}, "fact(0.5)")
+        # There are 2 errors below because py3.8 raises ValueError and 3.11 raises TypeError
+        # Value error to be removed when we remove py3.8 support
+        self.assertRaises((TypeError, ValueError), calc.evaluator, {}, {}, "fact(0.5)")
         self.assertRaises(ValueError, calc.evaluator, {}, {}, "factorial(-1)")
-        self.assertRaises(ValueError, calc.evaluator, {}, {}, "factorial(0.5)")
+        # There are 2 errors below because py3.8 raises ValueError and 3.11 raises TypeError
+        # Value error to be removed when we remove py3.8 support
+        self.assertRaises((TypeError, ValueError), calc.evaluator, {}, {}, "factorial(0.5)")
 
     def test_constants(self):
         """

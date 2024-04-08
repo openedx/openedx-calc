@@ -127,7 +127,11 @@ def eval_number(parse_result):
     e.g. [ '7.13', 'e', '3' ] ->  7130
     Calls super_float above.
     """
-    return super_float("".join(parse_result))
+    for item in parse_result:
+        if "." in item or "e" in item or "E" in item:
+            return super_float("".join(parse_result))
+
+    return int("".join(parse_result))
 
 
 def eval_atom(parse_result):
@@ -185,7 +189,7 @@ def eval_sum(parse_result):
 
     Allow a leading + or -.
     """
-    total = 0.0
+    total = 0
     current_op = operator.add
     for token in parse_result:
         if token == '+':
@@ -203,7 +207,7 @@ def eval_product(parse_result):
 
     [ 1, '*', 2, '/', 3 ] -> 0.66
     """
-    prod = 1.0
+    prod = 1
     current_op = operator.mul
     for token in parse_result:
         if token == '*':
