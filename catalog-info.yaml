@@ -14,7 +14,6 @@ metadata:
       icon: "GitHub"
   annotations:
     openedx.org/arch-interest-groups: ""
-    openedx.org/release: "main"
 spec:
   owner: group:openedx-unmaintained
   type: 'library'
