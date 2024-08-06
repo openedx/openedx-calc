@@ -8,10 +8,7 @@ metadata:
   description: >
           A helper library for mathematical calculations and
           symbolic mathematics, used by the edx-platform.
-  links:
-    - url: "https://github.com/openedx/openedx-calc"
-      title: "openedx/openedx-calc"
-      icon: "GitHub"
+  links: []
   annotations:
     openedx.org/arch-interest-groups: ""
 spec:
