@@ -112,7 +112,7 @@ def lower_dict(input_dict):
 
 def super_float(text):
     """
-    Like float, but with SI extensions. 1k goes to 1000.
+    Evaluate suffixes if applicable and apply float.
     """
     if text[-1] in SUFFIXES:
         return float(text[:-1]) * SUFFIXES[text[-1]]
@@ -128,7 +128,7 @@ def eval_number(parse_result):
     Calls super_float above.
     """
     for item in parse_result:
-        if "." in item or "e" in item or "E" in item:
+        if "." in item or "e" in item or "E" in item or parse_result[-1] in SUFFIXES:
             return super_float("".join(parse_result))
 
     return int("".join(parse_result))
