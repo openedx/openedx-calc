@@ -79,7 +79,7 @@ DEFAULT_VARIABLES = {
 }
 
 SUFFIXES = {
-    '%': 0.01,
+    '%': lambda x: x * 0.01,
 }
 
 
@@ -114,22 +114,23 @@ def super_float(text):
     """
     Evaluate suffixes if applicable and apply float.
     """
-    if text[-1] in SUFFIXES:
-        return float(text[:-1]) * SUFFIXES[text[-1]]
-    else:
-        return float(text)
+    func = SUFFIXES[text[-1]]
+    return func(float(text[:-1]))
 
 
 def eval_number(parse_result):
     """
-    Create a float out of its string parts.
+    Returns an int or a float from string parts.
+    Calls super_float above for suffix evaluation.
 
     e.g. [ '7.13', 'e', '3' ] ->  7130
-    Calls super_float above.
     """
+    if parse_result[-1] in SUFFIXES:
+        return super_float("".join(parse_result))
+
     for item in parse_result:
-        if "." in item or "e" in item or "E" in item or parse_result[-1] in SUFFIXES:
-            return super_float("".join(parse_result))
+        if "." in item or "e" in item or "E" in item:
+            return float("".join(parse_result))
 
     return int("".join(parse_result))
 
