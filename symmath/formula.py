@@ -113,7 +113,7 @@ def my_evalf(expr, chop=False):
         return expr
 
 
-def my_sympify(expr, normphase=False, matrix=False, abcsym=False, do_qubit=False, symtab=None):
+def my_sympify(expr, normphase=False, matrix=False, abcsym=False, do_qubit=False, symtab=None):  # pylint: disable=too-many-positional-arguments
     """
     Version of sympify to import expression into sympy
     """
