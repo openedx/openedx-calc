@@ -7,4 +7,5 @@ coverage
 edx-lint
 pycodestyle
 pylint
+pytest
 tox
