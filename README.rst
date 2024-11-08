@@ -16,9 +16,39 @@ This code originally lived in the `edx-platform`_ repo, but now exists here inde
 Getting Started with Development
 ********************************
 
+General
+-------
+
 Please see the Open edX documentation for `guidance on Python development`_ in this repo.
 
 .. _guidance on Python development: https://docs.openedx.org/en/latest/developers/how-tos/get-ready-for-python-dev.html
+
+Instructions
+------------
+
+Fork and clone the repository, then open a terminal and cd into the repo folder.
+
+Create a virtual environment with one of the python versions specified for the repo. 
+Currently those are Python 3.11 and 3.12. Example:
+
+.. code-block:: bash
+
+    python3.11 -m venv ../openedx-calc-venv
+    source ../openedx-calc-venv/bin/activate
+
+Install the dependencies:
+
+.. code-block:: bash
+
+    make requirements
+
+Then you can run the tests with just `tox`.
+
+When Upgrading Requirements
+---------------------------
+
+Run `make upgrade` to get new versions, and `tox -r` to build the new virtual environment.
+
 
 Getting Help
 ************
@@ -75,6 +105,13 @@ to discuss your new feature idea with the maintainers before beginning developme
 to maximize the chances of your change being accepted.
 You can start a conversation by creating a new issue on this repo summarizing
 your idea.
+
+Because this repo is used for a wide variety of mathematical calculations,
+including learner grades, it may occasionally be desirable to maintain
+bug-for-bug compatibility with previous versions. Additions to the repo
+are more likely to be accepted than changes that could alter the outputs
+of existing functions.
+
 
 The Open edX Code of Conduct
 ****************************
