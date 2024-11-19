@@ -93,7 +93,11 @@ class EvaluatorTest(unittest.TestCase):
         For instance '%' stand for 1/100th so '1%' should be 0.01
         """
         test_mapping = [
-            ('4.2%', 0.042)
+            ('4.2%', 0.042),
+            ('1%', 0.01),
+            ('0.5%', 0.005),
+            ('70%', 0.7),
+            ('-50%', -0.5)
         ]
 
         for (expr, answer) in test_mapping:
