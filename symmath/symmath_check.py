@@ -62,7 +62,7 @@ def symmath_check_simple(expect, ans, adict={}, symtab=None, extra_options=None)
 # pretty generic checking function
 
 
-def check(expect, given, numerical=False, matrix=False, normphase=False, abcsym=False, do_qubit=True, symtab=None, dosimplify=False):  # lint-amnesty, pylint: disable=line-too-long
+def check(expect, given, numerical=False, matrix=False, normphase=False, abcsym=False, do_qubit=True, symtab=None, dosimplify=False):  # lint-amnesty, pylint: disable=line-too-long, too-many-positional-arguments
     """
     Returns dict with
 
@@ -172,7 +172,7 @@ def is_within_tolerance(expected, actual, tolerance):
 # This is one of the main entry points to call.
 
 
-def symmath_check(expect, ans, dynamath=None, options=None, debug=None, xml=None):  # lint-amnesty, pylint: disable=too-many-statements
+def symmath_check(expect, ans, dynamath=None, options=None, debug=None, xml=None):  # lint-amnesty, pylint: disable=too-many-statements, too-many-positional-arguments
     """
     Check a symbolic mathematical expression using sympy.
     The input may be presentation MathML.  Uses formula.
