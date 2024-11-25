@@ -19,11 +19,11 @@ click==8.1.7
     #   edx-lint
 click-log==0.4.0
     # via edx-lint
-code-annotations==1.8.0
+code-annotations==1.8.2
     # via edx-lint
 colorama==0.4.6
     # via tox
-coverage==7.6.4
+coverage==7.6.8
     # via -r requirements/test.in
 dill==0.3.9
     # via pylint
@@ -104,7 +104,7 @@ scipy==1.14.1
     # via -r requirements/base.txt
 six==1.16.0
     # via edx-lint
-stevedore==5.3.0
+stevedore==5.4.0
     # via code-annotations
 sympy==1.13.3
     # via -r requirements/base.txt
