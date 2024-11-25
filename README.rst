@@ -17,14 +17,14 @@ Getting Started with Development
 ********************************
 
 General
--------
+=======
 
 Please see the Open edX documentation for `guidance on Python development`_ in this repo.
 
 .. _guidance on Python development: https://docs.openedx.org/en/latest/developers/how-tos/get-ready-for-python-dev.html
 
 Instructions
-------------
+============
 
 Fork and clone the repository, then open a terminal and cd into the repo folder.
 
