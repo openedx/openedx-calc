@@ -19,7 +19,7 @@ click==8.1.7
     #   edx-lint
 click-log==0.4.0
     # via edx-lint
-code-annotations==1.8.2
+code-annotations==2.0.0
     # via edx-lint
 colorama==0.4.6
     # via tox
@@ -75,7 +75,7 @@ pluggy==1.5.0
     #   tox
 pycodestyle==2.12.1
     # via -r requirements/test.in
-pylint==3.3.1
+pylint==3.3.2
     # via
     #   -r requirements/test.in
     #   edx-lint
@@ -94,7 +94,7 @@ pyparsing==3.2.0
     # via -r requirements/base.txt
 pyproject-api==1.8.0
     # via tox
-pytest==8.3.3
+pytest==8.3.4
     # via -r requirements/test.in
 python-slugify==8.0.4
     # via code-annotations
@@ -114,5 +114,5 @@ tomlkit==0.13.2
     # via pylint
 tox==4.23.2
     # via -r requirements/test.in
-virtualenv==20.27.1
+virtualenv==20.28.0
     # via tox
