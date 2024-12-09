@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y \
 RUN easy_install pip
 RUN pip install \
     numpy \
-    scipy \
     'pyparsing==2.2.0' \
     tox \
 ;

@@ -5,5 +5,4 @@ lxml
 markupsafe
 numpy
 pyparsing
-scipy
 sympy
