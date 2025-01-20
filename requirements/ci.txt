@@ -8,19 +8,19 @@ cachetools==5.5.0
     # via
     #   -r requirements/tox.txt
     #   tox
-certifi==2024.8.30
+certifi==2024.12.14
     # via requests
 chardet==5.2.0
     # via
     #   -r requirements/tox.txt
     #   tox
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via requests
 colorama==0.4.6
     # via
     #   -r requirements/tox.txt
     #   tox
-coverage[toml]==7.6.8
+coverage[toml]==7.6.10
     # via coveralls
 coveralls==4.0.1
     # via -r requirements/ci.in
@@ -60,8 +60,10 @@ requests==2.32.3
 tox==4.23.2
     # via -r requirements/tox.txt
 urllib3==2.2.3
-    # via requests
-virtualenv==20.27.1
+    # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   requests
+virtualenv==20.29.1
     # via
     #   -r requirements/tox.txt
     #   tox
