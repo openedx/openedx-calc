@@ -8,13 +8,13 @@ cachetools==5.5.2
     # via
     #   -r requirements/tox.txt
     #   tox
-certifi==2025.1.31
+certifi==2025.4.26
     # via requests
 chardet==5.2.0
     # via
     #   -r requirements/tox.txt
     #   tox
-charset-normalizer==3.4.1
+charset-normalizer==3.4.2
     # via requests
 colorama==0.4.6
     # via
@@ -37,12 +37,12 @@ filelock==3.18.0
     #   virtualenv
 idna==3.10
     # via requests
-packaging==24.2
+packaging==25.0
     # via
     #   -r requirements/tox.txt
     #   pyproject-api
     #   tox
-platformdirs==4.3.7
+platformdirs==4.3.8
     # via
     #   -r requirements/tox.txt
     #   tox
@@ -63,7 +63,7 @@ urllib3==2.2.3
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   requests
-virtualenv==20.30.0
+virtualenv==20.31.2
     # via
     #   -r requirements/tox.txt
     #   tox

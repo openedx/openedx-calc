@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-astroid==3.3.9
+astroid==3.3.10
     # via
     #   pylint
     #   pylint-celery
@@ -12,20 +12,20 @@ cachetools==5.5.2
     # via tox
 chardet==5.2.0
     # via tox
-click==8.1.8
+click==8.2.0
     # via
     #   click-log
     #   code-annotations
     #   edx-lint
 click-log==0.4.0
     # via edx-lint
-code-annotations==2.2.0
+code-annotations==2.3.0
     # via edx-lint
 colorama==0.4.6
     # via tox
 coverage==7.8.0
     # via -r requirements/test.in
-dill==0.3.9
+dill==0.4.0
     # via pylint
 distlib==0.3.9
     # via virtualenv
@@ -41,7 +41,7 @@ isort==6.0.1
     # via pylint
 jinja2==3.1.6
     # via code-annotations
-lxml==5.3.2
+lxml==5.4.0
     # via -r requirements/base.txt
 markupsafe==3.0.2
     # via
@@ -53,16 +53,16 @@ mpmath==1.3.0
     # via
     #   -r requirements/base.txt
     #   sympy
-numpy==2.2.4
+numpy==2.2.5
     # via -r requirements/base.txt
-packaging==24.2
+packaging==25.0
     # via
     #   pyproject-api
     #   pytest
     #   tox
 pbr==6.1.1
     # via stevedore
-platformdirs==4.3.7
+platformdirs==4.3.8
     # via
     #   pylint
     #   tox
@@ -73,7 +73,7 @@ pluggy==1.5.0
     #   tox
 pycodestyle==2.13.0
     # via -r requirements/test.in
-pylint==3.3.6
+pylint==3.3.7
     # via
     #   -r requirements/test.in
     #   edx-lint
@@ -102,7 +102,7 @@ six==1.17.0
     # via edx-lint
 stevedore==5.4.1
     # via code-annotations
-sympy==1.13.3
+sympy==1.14.0
     # via -r requirements/base.txt
 text-unidecode==1.3
     # via python-slugify
@@ -110,7 +110,7 @@ tomlkit==0.13.2
     # via pylint
 tox==4.25.0
     # via -r requirements/test.in
-virtualenv==20.30.0
+virtualenv==20.31.2
     # via tox
 
 # The following packages are considered to be unsafe in a requirements file:
