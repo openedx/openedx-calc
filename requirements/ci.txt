@@ -4,27 +4,27 @@
 #
 #    make upgrade
 #
-cachetools==5.5.2
+cachetools==6.1.0
     # via
     #   -r requirements/tox.txt
     #   tox
-certifi==2025.1.31
+certifi==2025.7.14
     # via requests
 chardet==5.2.0
     # via
     #   -r requirements/tox.txt
     #   tox
-charset-normalizer==3.4.1
+charset-normalizer==3.4.2
     # via requests
 colorama==0.4.6
     # via
     #   -r requirements/tox.txt
     #   tox
-coverage[toml]==7.8.0
+coverage[toml]==7.10.1
     # via coveralls
 coveralls==4.0.1
     # via -r requirements/ci.in
-distlib==0.3.9
+distlib==0.4.0
     # via
     #   -r requirements/tox.txt
     #   virtualenv
@@ -37,33 +37,33 @@ filelock==3.18.0
     #   virtualenv
 idna==3.10
     # via requests
-packaging==24.2
+packaging==25.0
     # via
     #   -r requirements/tox.txt
     #   pyproject-api
     #   tox
-platformdirs==4.3.7
+platformdirs==4.3.8
     # via
     #   -r requirements/tox.txt
     #   tox
     #   virtualenv
-pluggy==1.5.0
+pluggy==1.6.0
     # via
     #   -r requirements/tox.txt
     #   tox
-pyproject-api==1.9.0
+pyproject-api==1.9.1
     # via
     #   -r requirements/tox.txt
     #   tox
-requests==2.32.3
+requests==2.32.4
     # via coveralls
-tox==4.25.0
+tox==4.28.3
     # via -r requirements/tox.txt
 urllib3==2.2.3
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   requests
-virtualenv==20.30.0
+virtualenv==20.32.0
     # via
     #   -r requirements/tox.txt
     #   tox
