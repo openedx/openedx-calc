@@ -60,7 +60,7 @@ packaging==25.0
     #   pyproject-api
     #   pytest
     #   tox
-platformdirs==4.5.0
+platformdirs==4.5.1
     # via
     #   pylint
     #   tox
@@ -92,7 +92,7 @@ pyparsing==3.2.5
     # via -r requirements/base.txt
 pyproject-api==1.10.0
     # via tox
-pytest==9.0.1
+pytest==9.0.2
     # via -r requirements/test.in
 python-slugify==8.0.4
     # via code-annotations
