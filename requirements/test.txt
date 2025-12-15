@@ -8,7 +8,7 @@ astroid==3.3.11
     # via
     #   pylint
     #   pylint-celery
-cachetools==6.2.2
+cachetools==6.2.3
     # via tox
 chardet==5.2.0
     # via tox
@@ -23,7 +23,7 @@ code-annotations==2.3.0
     # via edx-lint
 colorama==0.4.6
     # via tox
-coverage==7.12.0
+coverage==7.13.0
     # via -r requirements/test.in
 dill==0.4.0
     # via pylint
@@ -60,7 +60,7 @@ packaging==25.0
     #   pyproject-api
     #   pytest
     #   tox
-platformdirs==4.5.0
+platformdirs==4.5.1
     # via
     #   pylint
     #   tox
@@ -92,7 +92,7 @@ pyparsing==3.2.5
     # via -r requirements/base.txt
 pyproject-api==1.10.0
     # via tox
-pytest==9.0.1
+pytest==9.0.2
     # via -r requirements/test.in
 python-slugify==8.0.4
     # via code-annotations
