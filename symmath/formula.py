@@ -35,8 +35,6 @@ from markupsafe import Markup
 
 log = logging.getLogger(__name__)
 
-log.warning("Dark code. Needs review before enabling in prod.")
-
 os.environ['PYTHONIOENCODING'] = 'utf-8'
 
 #-----------------------------------------------------------------------------
