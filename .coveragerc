@@ -1,6 +1,6 @@
 [run]
 data_file = reports/.coverage
-source = calc, symmath
+source = src/calc, src/symmath
 branch = true
 relative_files = True
 
