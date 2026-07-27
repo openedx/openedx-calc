@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-.PHONY: help requirements
+.PHONY: help clean requirements test upgrade
 help:  ## This.
 	@perl -ne 'print if /^[a-zA-Z_-]+:.*## .*$$/' $(MAKEFILE_LIST) \
 	| sort \
@@ -10,24 +10,11 @@ clean:  ## Remove all build artifacts
 	find . -name '*.pyc'
 
 test:  ## Run the library test suite
-	tox
+	uv run tox
 
 requirements: ## install development environment requirements
-	pip install -r requirements/pip_tools.txt
-	pip install -r requirements/test.txt
+	uv sync --group dev
 
-COMMON_CONSTRAINTS_TXT=requirements/common_constraints.txt
-.PHONY: $(COMMON_CONSTRAINTS_TXT)
-$(COMMON_CONSTRAINTS_TXT):
-	wget -O "$(@)" https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt || touch "$(@)"
-
-upgrade: export CUSTOM_COMPILE_COMMAND=make upgrade
-upgrade: $(COMMON_CONSTRAINTS_TXT)
-	## update the requirements/*.txt files with the latest packages satisfying requirements/*.in
-	pip install -qr requirements/pip_tools.txt
-	pip-compile --upgrade --allow-unsafe -o requirements/pip_tools.txt requirements/pip_tools.in
-	pip install -qr requirements/pip_tools.txt
-	pip-compile --upgrade -o requirements/base.txt requirements/base.in
-	pip-compile --upgrade -o requirements/test.txt requirements/test.in
-	pip-compile --upgrade -o requirements/tox.txt requirements/tox.in
-	pip-compile --upgrade -o requirements/ci.txt requirements/ci.in
+upgrade: ## update the uv.lock to use the latest releases satisfying our constraints
+	uv run --with edx-lint edx_lint write_uv_constraints pyproject.toml
+	uv lock --upgrade
