@@ -28,21 +28,19 @@ Instructions
 
 Fork and clone the repository, then open a terminal and cd into the repo folder.
 
-Create a virtual environment with one of the python versions specified for the repo. 
-Currently those are Python 3.11 and 3.12. Example:
-
-.. code-block:: bash
-
-    python3.11 -m venv ../openedx-calc-venv
-    source ../openedx-calc-venv/bin/activate
-
-Install the dependencies:
+Install `uv`_, then install the dependencies:
 
 .. code-block:: bash
 
     make requirements
 
+This creates and manages its own virtual environment via `uv sync`, using one
+of the python versions specified for the repo (currently 3.11 and 3.12) --
+there's no need to create one yourself.
+
 Then you can run the tests with just `tox`.
+
+.. _uv: https://docs.astral.sh/uv/getting-started/installation/
 
 When Upgrading Requirements
 ---------------------------
