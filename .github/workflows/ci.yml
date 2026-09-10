@@ -8,7 +8,7 @@ on:
 
 jobs:
   run_tests:
-    name: ${{ matrix.toxenv }}
+    name: tests
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -16,7 +16,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         python-version: ['3.12']
-        toxenv: [py312, quality]
+        toxenv: [py, quality]
 
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
