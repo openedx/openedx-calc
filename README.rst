@@ -33,9 +33,10 @@ Install `uv`_, then install the dependencies:
 .. code-block:: bash
 
     make requirements
+    source .venv/bin/activate
 
 This creates and manages its own virtual environment via `uv sync`, using one
-of the python versions specified for the repo (currently 3.11 and 3.12) --
+of the python versions specified for the repo (currently 3.12) --
 there's no need to create one yourself.
 
 Then you can run the tests with just `tox`.
@@ -45,7 +46,8 @@ Then you can run the tests with just `tox`.
 When Upgrading Requirements
 ---------------------------
 
-Run `make upgrade` to get new versions, and `tox -r` to build the new virtual environment.
+Run `make upgrade` to get new versions, then `source .venv/bin/activate` and
+`tox -r` to build the new virtual environment.
 
 
 Getting Help
