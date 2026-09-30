@@ -10,5 +10,6 @@ build
 .pytest_cache
 .coverage
 venv/
+.venv
 .vscode/
 .idea/
