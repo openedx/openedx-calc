@@ -23,7 +23,6 @@ classifiers = [
 dependencies = [
     "lxml",
     "markupsafe",
-    "numpy",
     "pyparsing",
     "six",
     "sympy",
