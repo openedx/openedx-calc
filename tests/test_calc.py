@@ -3,17 +3,12 @@ Unit tests for calc.py
 """
 
 
+import math
 import unittest
-import numpy
 from pyparsing import ParseException
 import calc
 
-# numpy's default behavior when it evaluates a function outside its domain
-# is to raise a warning (not an exception) which is then printed to STDOUT.
-# To prevent this from polluting the output of the tests, configure numpy to
-# ignore it instead.
-# See http://docs.scipy.org/doc/numpy/reference/generated/numpy.seterr.html
-numpy.seterr(all='ignore')  # Also: 'ignore', 'warn' (default), 'raise'
+INF = float('inf')
 
 
 class EvaluatorTest(unittest.TestCase):
@@ -135,6 +130,10 @@ class EvaluatorTest(unittest.TestCase):
             calc.evaluator({}, {}, '1/0.0')
         with self.assertRaises(ZeroDivisionError):
             calc.evaluator({'x': 0.0}, {}, '1/x')
+        # Dividing by a function's result follows the same rule. (The
+        # reciprocal functions are different: csc(0) is inf.)
+        with self.assertRaises(ZeroDivisionError):
+            calc.evaluator({}, {}, '1/sin(0)')
 
     def test_parallel_resistors(self):
         """
@@ -154,9 +153,9 @@ class EvaluatorTest(unittest.TestCase):
         """
         Check the behavior of the || operator with 0
         """
-        self.assertTrue(numpy.isnan(calc.evaluator({}, {}, '0||1')))
-        self.assertTrue(numpy.isnan(calc.evaluator({}, {}, '0.0||1')))
-        self.assertTrue(numpy.isnan(calc.evaluator({'x': 0.0}, {}, 'x||1')))
+        self.assertTrue(math.isnan(calc.evaluator({}, {}, '0||1')))
+        self.assertTrue(math.isnan(calc.evaluator({}, {}, '0.0||1')))
+        self.assertTrue(math.isnan(calc.evaluator({'x': 0.0}, {}, 'x||1')))
 
     def assert_function_values(self, fname, ins, outs, tolerance=1e-3):
         """
@@ -320,10 +319,9 @@ class EvaluatorTest(unittest.TestCase):
         # Test sqrt
         self.assert_function_values(
             'sqrt',
-            [0, 1, 2, 1024],  # -1
-            [0, 1, 1.414, 32]  # 1j
+            [0, 1, 2, 1024, -1],
+            [0, 1, 1.414, 32, 1j]
         )
-        # sqrt(-1) is NAN not j (!!).
 
         # Test logs
         self.assert_function_values(
@@ -355,6 +353,98 @@ class EvaluatorTest(unittest.TestCase):
         self.assertRaises(TypeError, calc.evaluator, {}, {}, "fact(0.5)")
         self.assertRaises(ValueError, calc.evaluator, {}, {}, "factorial(-1)")
         self.assertRaises(TypeError, calc.evaluator, {}, {}, "factorial(0.5)")
+
+    def test_complex_outside_real_domain(self):
+        """
+        sqrt, the logarithms, arcsin, arccos, and arctanh give complex
+        results for real input outside their real domain
+        """
+        self.assertEqual(calc.evaluator({}, {}, 'sqrt(-4)'), 2j)
+        self.assert_function_values('ln', ['-1'], [math.pi * 1j])
+        self.assert_function_values('log10', ['-100'], [2 + 1.364j])
+        self.assert_function_values('log2', ['-1'], [4.532j])
+        self.assert_function_values('arcsin', ['2'], [1.571 + 1.317j])
+        self.assert_function_values('arccos', ['2'], [-1.317j])
+        self.assert_function_values('arctanh', ['2'], [0.549 + 1.571j])
+
+    def test_nan_outside_real_domain(self):
+        """
+        The other inverse functions give nan for real input outside their
+        real domain, as do the trig functions of an infinite angle
+        """
+        for expr in ['arccosh(0.5)', 'arcsec(0.5)', 'arccsc(0.5)',
+                     'arcsech(2)', 'arccoth(0.5)', 'sin(exp(1000))']:
+            result = calc.evaluator({}, {}, expr)
+            self.assertTrue(math.isnan(result), f"{expr} gave {result!r}")
+
+    def test_infinite_results(self):
+        """
+        Poles and overflow give inf rather than raising
+
+        Grading relies on this: two formulas that both evaluate to inf
+        compare as equal, but a formula that raises can't be graded.
+        """
+        cases = [
+            ('ln(0)', -INF), ('log10(0)', -INF), ('log2(0)', -INF),
+            ('exp(1000)', INF), ('sinh(1000)', INF), ('sinh(-1000)', -INF),
+            ('cosh(-1000)', INF), ('arctanh(1)', INF), ('arctanh(-1)', -INF),
+            ('arccoth(1)', INF), ('csc(0)', INF), ('cot(0)', INF),
+            ('csch(0)', INF), ('coth(0)', INF),
+        ]
+        for expr, expected in cases:
+            self.assertEqual(calc.evaluator({}, {}, expr), expected, expr)
+
+        # Complex results are checked on the functions directly. The
+        # evaluator multiplies every result by 1, and before Python 3.14 that
+        # turns 0 * inf into nan in a complex result's other part.
+        complex_cases = [
+            (calc.functions.exp, 1000 + 1j, complex(INF, INF)),
+            (calc.functions.exp, 1000 + 0j, complex(INF, 0)),
+            (calc.functions.sinh, 1000 + 2j, complex(-INF, INF)),
+            (calc.functions.cosh, -1000 + 2j, complex(-INF, -INF)),
+            (calc.functions.ln, 0j, complex(-INF, 0)),
+            (calc.functions.log10, 0j, complex(-INF, 0)),
+            (calc.functions.log2, 0j, complex(-INF, 0)),
+            (calc.functions.arctan, 1j, complex(0, INF)),
+            (calc.functions.arctanh, 1 + 0j, complex(INF, 0)),
+        ]
+        for function, arg, expected in complex_cases:
+            self.assertEqual(function(arg), expected, f"{function.__name__}({arg})")
+
+        result = calc.functions.cot(0j)
+        self.assertEqual(result.real, INF)
+        self.assertTrue(math.isnan(result.imag))
+
+    def test_arithmetic_on_function_results(self):
+        """
+        Arithmetic on a function's result follows Python's rules, the same
+        as arithmetic on numbers typed directly
+        """
+        self.assertEqual(calc.evaluator({}, {}, 'abs(-3)^100'), 3 ** 100)
+        self.assertEqual(calc.evaluator({}, {}, 'abs(-2)^-1'), 0.5)
+        self.assertAlmostEqual(
+            calc.evaluator({}, {}, '(-sqrt(4))^0.5'),
+            calc.evaluator({}, {}, '(-2)^0.5'),
+        )
+        with self.assertRaises(OverflowError):
+            calc.evaluator({}, {}, 'exp(1)^1000')
+
+    def test_large_integer_arguments(self):
+        """
+        Functions accept integers too large for a 64-bit int
+        """
+        self.assertEqual(calc.evaluator({}, {}, 'sin(10^20)'), math.sin(10 ** 20))
+        self.assertEqual(calc.evaluator({}, {}, 'sqrt(10^40)'), 1e20)
+        self.assertEqual(calc.evaluator({}, {}, 'exp(fact(25))'), INF)
+
+    def test_results_are_python_numbers(self):
+        """
+        Results are plain Python numbers
+        """
+        for expr in ['sin(1)', 'sqrt(4)', 'exp(1)', 'abs(-1.5)', 'pi']:
+            self.assertIs(type(calc.evaluator({}, {}, expr)), float, expr)
+        self.assertIs(type(calc.evaluator({}, {}, 'abs(-3)')), int)
+        self.assertIs(type(calc.evaluator({}, {}, 'sqrt(-4)')), complex)
 
     def test_constants(self):
         """
@@ -502,7 +592,7 @@ class EvaluatorTest(unittest.TestCase):
         self.assertEqual(calc.evaluator({}, functions, 'id(2.81)'), 2.81)
         self.assertEqual(calc.evaluator(variables, functions, 'id(x)'), 4.712)
 
-        functions.update({'f': numpy.sin})
+        functions.update({'f': math.sin})
         self.assertAlmostEqual(
             calc.evaluator(variables, functions, 'f(x)'),
             -1, delta=1e-3

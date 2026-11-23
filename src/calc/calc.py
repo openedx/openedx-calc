@@ -9,7 +9,6 @@ import numbers
 import operator
 
 from functools import reduce
-import numpy
 from pyparsing import (
     CaselessLiteral,
     Combine,
@@ -31,41 +30,39 @@ from pyparsing import (
 from . import functions
 
 
-# Functions available by default
-# We use scimath variants which give complex results when needed. For example:
-#   np.sqrt(-4+0j) = 2j
-#   np.sqrt(-4) = nan, but
-#   np.lib.scimath.sqrt(-4) = 2j
+# Functions available by default. Each accepts real or complex input; see
+# functions.py for how they handle values outside their real domain. For
+# example, sqrt(-4) is 2j rather than nan.
 DEFAULT_FUNCTIONS = {
-    'sin': numpy.sin,
-    'cos': numpy.cos,
-    'tan': numpy.tan,
+    'sin': functions.sin,
+    'cos': functions.cos,
+    'tan': functions.tan,
     'sec': functions.sec,
     'csc': functions.csc,
     'cot': functions.cot,
-    'sqrt': numpy.lib.scimath.sqrt,
-    'log10': numpy.lib.scimath.log10,
-    'log2': numpy.lib.scimath.log2,
-    'ln': numpy.lib.scimath.log,
-    'exp': numpy.exp,
-    'arccos': numpy.lib.scimath.arccos,
-    'arcsin': numpy.lib.scimath.arcsin,
-    'arctan': numpy.arctan,
+    'sqrt': functions.sqrt,
+    'log10': functions.log10,
+    'log2': functions.log2,
+    'ln': functions.ln,
+    'exp': functions.exp,
+    'arccos': functions.arccos,
+    'arcsin': functions.arcsin,
+    'arctan': functions.arctan,
     'arcsec': functions.arcsec,
     'arccsc': functions.arccsc,
     'arccot': functions.arccot,
-    'abs': numpy.abs,
+    'abs': abs,
     'fact': math.factorial,
     'factorial': math.factorial,
-    'sinh': numpy.sinh,
-    'cosh': numpy.cosh,
-    'tanh': numpy.tanh,
+    'sinh': functions.sinh,
+    'cosh': functions.cosh,
+    'tanh': functions.tanh,
     'sech': functions.sech,
     'csch': functions.csch,
     'coth': functions.coth,
-    'arcsinh': numpy.arcsinh,
-    'arccosh': numpy.arccosh,
-    'arctanh': numpy.lib.scimath.arctanh,
+    'arcsinh': functions.arcsinh,
+    'arccosh': functions.arccosh,
+    'arctanh': functions.arctanh,
     'arcsech': functions.arcsech,
     'arccsch': functions.arccsch,
     'arccoth': functions.arccoth
@@ -74,8 +71,8 @@ DEFAULT_FUNCTIONS = {
 DEFAULT_VARIABLES = {
     'i': complex(0, 1),
     'j': complex(0, 1),
-    'e': numpy.e,
-    'pi': numpy.pi,
+    'e': math.e,
+    'pi': math.pi,
 }
 
 SUFFIXES = {
